@@ -43,6 +43,22 @@
                         </ul>
 
                     </li>
+                    <!-- menu users-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#users">
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">المستخدمين</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="users" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{route('roles.index')}}">صلاحيات المستخدمين</a> </li>
+                            <li> <a href="{{route('users.index')}}"> المستخدمين</a> </li>
+                        </ul>
+
+                    </li>
+
+                    </li>
 
 
 

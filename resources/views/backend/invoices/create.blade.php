@@ -29,7 +29,7 @@
 @endsection
 
 @section('content')
-    @include('backend.massage')
+{{--    @include('backend.massage')--}}
     <!-- row -->
     <div class="row">
         <div class="col-md-12 mb-30">
@@ -66,17 +66,19 @@
                                         <option value="{{$categorie->id}}">{{$categorie->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('categorie_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col">
                                 <label>المنتج</label>
                                 <select name="product_id" class="form-control form-control-lg mb-15"
                                         @error('product_id') is-invalid @enderror>
                                     <option value="" disabled selected>المنتج</option>
-                                    {{--                                    <option value="2"  >المنتج</option>--}}
-                                    {{--                                    @foreach($products as $product)--}}
-                                    {{--                                        <option value="{{$product->id}}">{{$product->name}}</option>--}}
-                                    {{--                                    @endforeach--}}
                                 </select>
+                                @error('categorie_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col">
                                 <label>السعر</label>

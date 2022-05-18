@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\categorie;
 use App\Models\invoice;
 use App\Models\invoice_details;
@@ -29,7 +30,7 @@ class InvoiceController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreInvoiceRequest $request)
     {
 
         if (empty(invoice::latest()->first()->invoices_number)) {
@@ -95,7 +96,7 @@ class InvoiceController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(StoreInvoiceRequest $request)
     {
         $invoice = invoice::findorFail($request->id);
         try {
@@ -132,12 +133,14 @@ class InvoiceController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
 //Getproduct
     public function Getproduct($id)
     {
         $product = product::where('categorie_id', $id)->pluck('name', 'id');
         return $product;
     }
+
 //Getprice
     public function Getprice($id)
     {
@@ -146,7 +149,8 @@ class InvoiceController extends Controller
     }
 
 //change_payment
-    public function change_payment(Request $request){
+    public function change_payment(StoreInvoiceRequest $request)
+    {
 
         $invoice = invoice::findorFail($request->invoice_id);
 
@@ -155,7 +159,7 @@ class InvoiceController extends Controller
         try {
             $invoice->update([
 
-                'status' =>$request->status,
+                'status' => $request->status,
 
             ]);
 
@@ -172,4 +176,5 @@ class InvoiceController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-}}
+    }
+}

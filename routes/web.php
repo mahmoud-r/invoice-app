@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,7 +38,8 @@ Route::group(
     Route::post('change_payment',[InvoiceController::class,'change_payment'])->name('change_payment');
     Route::resource('invoice', InvoiceController::class)->middleware('auth');
 
-
+    Route::resource('roles', RoleController::class)->middleware('auth');
+    Route::resource('users', UserController::class)->middleware('auth');
 
 
 

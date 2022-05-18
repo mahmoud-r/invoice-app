@@ -16,7 +16,7 @@ class StoreproductRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|unique:Products,name,'.$this->id,
+            'name' => 'required|unique:Products,name,'.$this->id,
             'name_ar' => 'required|unique:Products,name,'.$this->id,
             'categorie_id' => 'required',
         ];
