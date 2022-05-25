@@ -37,10 +37,15 @@
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
+                    @can('add-Categories')
+
                     <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#createcat">
                       {{trans('backend/Categories.add')}}
                     </button>
+
                     @include('backend.Categories.create')
+
+                    @endcan
                     <div class="table-responsive text-center">
                         <table id="datatable" class="table table-striped table-bordered p-0">
                             <thead>
@@ -58,11 +63,16 @@
                                 <td>{{$categorie->name}}</td>
                                 <td >{{$categorie->notes == true ? $categorie->notes :'لا توجد ملاحظات '}}</td>
                                 <td>
+                                    @can('edit-Categories')
                                     <button type="button" class="btn btn-success btn-sm" title="{{trans('backend/Categories.edite')}}" data-toggle="modal" data-target="#Editecategorie{{$categorie->id}}" >
                                         <i class="fa fa-edit"></i>
                                     </button>
+                                    @endcan
+                                    @can('delete-Categories')
                                     <button type="button" class="btn btn-danger btn-sm" title="{{trans('backend/Categories.delete')}}" data-toggle="modal" data-target="#deleteecategorie{{$categorie->id}}" >
-                                        <i class="fa fa-trash"></i>                                    </button>
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                        @endcan
                                     </td>
                                 @include('backend.Categories.edite')
                                 @include('backend.Categories.delete')

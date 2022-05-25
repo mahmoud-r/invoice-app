@@ -2,7 +2,7 @@
 
 
 @section('title')
-    blank
+    Products
 @endsection
 
 
@@ -37,9 +37,11 @@
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
+                    @can('add-products')
                     <a href="{{route('products.create')}}" type="button" class="btn btn-primary mb-4" >
                       اضافه منتج
                     </a>
+                    @endcan
                     <div class="table-responsive text-center">
                         <table id="datatable" class="table table-striped table-bordered p-0">
                             <thead>
@@ -47,6 +49,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col" > الاسم</th>
                                 <th scope="col"> القسم</th>
+                                <th scope="col"> الكميه</th>
                                 <th scope="col"> السعر</th>
                                 <th scope="col" >ملاحظات</th>
                                 <th scope="col" >تعديل & حذف</th>
@@ -55,23 +58,29 @@
                             <tbody>
                             @forelse($Products as $Product)
                                 <tr>
-                                    <th scope="row">{{$loop->index+1}}</th>
+                                    <th scope="row">{{++$i}}</th>
                                     <td>{{$Product->name}}</td>
                                     <td>{{$Product->categorie->name}}</td>
+                                    <td>{{$Product->Quantity}}</td>
                                     <td>{{$Product->price}}</td>
                                     <td >{{$Product->notes == true ? $Product->notes :'لا توجد ملاحظات '}}</td>
                                     <td>
+                                        @can('edit-products')
                                         <a href="{{route('products.edit' ,$Product->id)}}">
                                         <button type="button" class="btn btn-success btn-sm" title="edite"  >
                                             <i class="fa fa-edit"></i>
                                         </button>
                                         </a>
+                                        @endcan
+                                        @can('delete-products')
                                         <button type="button" class="btn btn-danger btn-sm" data-pro_id="{{$Product->id}}" title="{{trans('backend/Categories.delete')}}" data-toggle="modal" data-target="#deleteeproduct" >
-                                            <i class="fa fa-trash"></i>                                    </button>
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                            @endcan
                                     </td>
                                 </tr>
                             @empty
-                                <td style="text-align: center" colspan="6">لا يوجد فواتير
+                                <td style="text-align: center" colspan="7">لا يوجد فواتير
 
                                 </td>
 
@@ -82,6 +91,7 @@
 
                         </table>
                     </div>
+                    {!! $Products->render() !!}
                 </div>
             </div>
         </div>

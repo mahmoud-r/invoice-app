@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->decimal('price');
+            $table->integer('Quantity');
             $table->foreignId('categorie_id')->references('id')->on('categories')->cascadeOnDelete();
             $table->text('notes')->nullable();
             $table->timestamps();

@@ -23,6 +23,7 @@ class invoiceFactory extends Factory
             'product_id' => $this->faker->numberBetween('1','50'),
             'disconunt' => $this->faker->randomNumber('3'),
             'price' => $this->faker->randomNumber('3'),
+            'Quantity' => $this->faker->randomNumber('3'),
             'total' => $this->faker->randomNumber('3'),
             'text_rate' => $this->faker->numberBetween('1','3'),
             'text_value' => $this->faker->randomNumber(3),

@@ -19,6 +19,7 @@ class productFactory extends Factory
         return [
             'name' => $this->faker->unique()->name(),
             'price' => $this->faker->randomNumber('5'),
+            'Quantity' => $this->faker->randomNumber('2'),
             'categorie_id' => $this->faker->numberBetween('1','10'),
         ];
     }

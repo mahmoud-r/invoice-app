@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:show-Categories|add-Categories|edit-Categories|delete-Categories', ['only' => ['index']]);
+        $this->middleware('permission:add-Categories', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-Categories', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-Categories', ['only' => ['destroy']]);
+    }
+
 
     public function index()
     {

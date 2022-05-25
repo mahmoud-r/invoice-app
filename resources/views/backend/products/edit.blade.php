@@ -67,6 +67,10 @@
                                     </select>
                                 </div>
                            <div class="col">
+                               <label >الكميه</label>
+                               <input type="number" value="{{$product->Quantity}}" class="form-control form-control-lg mb-15" name="Quantity" @error('Quantity') is-invalid @enderror >
+                           </div>
+                            <div class="col">
                                <label >السعر</label>
                                <input type="number" value="{{$product->price}}" class="form-control form-control-lg mb-15" name="price" @error('price') is-invalid @enderror >
                            </div>

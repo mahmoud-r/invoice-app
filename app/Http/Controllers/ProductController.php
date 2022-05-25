@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
-    public function index()
+    function __construct()
     {
-        $Products =product::all();
+        $this->middleware('permission:show-users|add-users|edit-users|delete-users', ['only' => ['index']]);
+        $this->middleware('permission:add-users', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-users', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-users', ['only' => ['destroy']]);
+    }
+    public function index(Request $request)
+    {
+        $Products =product::simplePaginate(15);
 
-        return view('backend.Products.index',compact('Products'));
+        return view('backend.Products.index',compact('Products'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
 
@@ -31,6 +38,7 @@ class ProductController extends Controller
             product::create([
                 'name' =>['en' =>  $request->name , 'ar' => $request->name_ar],
                 'price'=> $request->price,
+                'Quantity'=> $request->Quantity,
                 'categorie_id'=> $request->categorie_id,
                 'notes'=> $request->notes,
             ]);
@@ -68,6 +76,7 @@ class ProductController extends Controller
             $product->update([
                 'name' =>['en' =>  $request->name , 'ar' => $request->name_ar],
                 'price'=> $request->price,
+                'Quantity'=> $request->Quantity,
                 'categorie_id'=> $request->categorie_id,
                 'notes'=> $request->notes,
             ]);

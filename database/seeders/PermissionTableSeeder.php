@@ -15,6 +15,23 @@ class PermissionTableSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+            'show-Categories',
+            'add-Categories',
+            'edit-Categories',
+            'delete-Categories',
+            'show-products',
+            'add-products',
+            'edit-products',
+            'delete-products',
+            'show-invoices',
+            'add-invoices',
+            'Payment-invoices',
+            'edit-invoices',
+            'delete-invoices',
+            'show-users',
+            'create-users',
+            'edit-users',
+            'delete-users',
 
         ];
 

@@ -29,6 +29,7 @@
 @endsection
 
 @section('content')
+    @include('backend.massage')
     <!-- row -->
     <div class="row">
         <div class="col-md-12 mb-30">
@@ -63,6 +64,10 @@
                                     </select>
                                 </div>
                            <div class="col">
+                               <label >الكميه</label>
+                               <input type="number" class="form-control form-control-lg mb-15" name="Quantity" @error('Quantity') is-invalid @enderror >
+                           </div>
+                            <div class="col">
                                <label >السعر</label>
                                <input type="number" class="form-control form-control-lg mb-15" name="price" @error('price') is-invalid @enderror >
                            </div>

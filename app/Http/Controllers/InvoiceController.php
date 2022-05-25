@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInvoiceRequest;
+use App\Http\Requests\StoreitemtRequest;
 use App\Models\categorie;
 use App\Models\invoice;
 use App\Models\invoice_details;
+use App\Models\items_invoice;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,24 +15,21 @@ use Illuminate\Support\Facades\DB;
 class InvoiceController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:show-invoices|add-invoices|edit-invoices|delete-invoices', ['only' => ['index']]);
+        $this->middleware('permission:add-invoices', ['only' => ['create', 'store','add_item','delete_item','Getproduct','Getprice']]);
+        $this->middleware('permission:edit-invoices|Payment-invoices|add-invoices', ['only' => ['edit', 'update','add_item','delete_item','Getproduct','Getprice','change_payment']]);
+        $this->middleware('permission:delete-invoices', ['only' => ['destroy','delete_item']]);
+    }
     public function index()
     {
+
         $invoices = invoice::all();
         return view('backend.invoices.index', compact('invoices'));
     }
 
-
-    public function create()
-    {
-
-        $products = product::all();
-        $categories = categorie::all();
-
-        return view('backend.invoices.create', compact('categories', 'products'));
-    }
-
-
-    public function store(StoreInvoiceRequest $request)
+    public function store(StoreInvoiceRequest $Request)
     {
 
         if (empty(invoice::latest()->first()->invoices_number)) {
@@ -45,102 +44,145 @@ class InvoiceController extends Controller
             $invoices_number = $last_num ? '0' . $last_num + 1 : 00001;
         } elseif ($invoices_number == 010000) {
             $invoices_number = $last_num ? $last_num + 1 : 00001;
-        }
+        };
+
 
         DB::beginTransaction();
+
 
         try {
             $invoice = invoice::create([
                 'invoices_number' => $invoices_number,
-                'invoices_date' => $request->invoices_date,
-                'categorie_id' => $request->categorie_id,
-                'product_id' => $request->product_id,
-                'price' => $request->price,
-                'disconunt' => $request->disconunt,
-                'text_rate' => $request->text_rate,
-                'text_value' => $request->text_value,
-                'after_disconunt' => $request->after_disconunt,
-                'total' => $request->total,
+                'invoices_date' => $Request->invoices_date,
+                'client_name' => $Request->client_name,
+                'client_phone' => $Request->client_phone,
+                'total' => 0,
                 'status' => 1,
-                'notes' => $request->notes,
+
             ]);
+
             invoice_details::create([
                 'invoices_id' => $invoice->id,
                 'status' => 1,
                 'user_id' => auth()->user()->id,
             ]);
 
+
             DB::commit();
 
-            session()->flash('Add', ' ام اضافه الفاتوره بنجاح  ' . $invoices_number);
-            return redirect('invoice');
+            return redirect()->route("invoice.edit",$invoice->id);
 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
-
-    public function show(invoice $invoice)
-    {
-        //
-    }
 
 
     public function edit($id)
     {
+
         $products = product::all();
+
         $categories = categorie::all();
+
         $invoice = invoice::findorFail($id);
+
         return view('backend.invoices.edit', compact('invoice', 'products', 'categories'));
     }
-
 
     public function update(StoreInvoiceRequest $request)
     {
         $invoice = invoice::findorFail($request->id);
+
+        DB::beginTransaction();
         try {
             $invoice->update([
                 'invoices_number' => $request->invoices_number,
                 'invoices_date' => $request->invoices_date,
-                'categorie_id' => $request->categorie_id,
-                'product_id' => $request->product_id,
-                'price' => $request->price,
-                'disconunt' => $request->disconunt,
-                'text_rate' => $request->text_rate,
-                'text_value' => $request->text_value,
-                'after_disconunt' => $request->after_disconunt,
+                'client_name' => $request->client_name,
+                'client_phone' => $request->client_phone,
                 'total' => $request->total,
-                'status' => 1,
-                'notes' => $request->notes,
             ]);
-            session()->flash('Edit', ' ام تعديل الفاتوره بنجاح  ' . $request->invoices_number);
+
+
+            DB::commit();
+
+            session()->flash('Edit', ' تم تعديل الفاتوره بنجاح  ' . $request->invoices_number);
             return redirect('invoice');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
-
-    public function destroy(Request $request)
+    public function show($id)
     {
-        try {
-            invoice::destroy($request->pro_id);
-            session()->flash('Deleted', 'تم الحذف بنجاح');
-            return redirect('invoice');
 
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        $invoice = invoice::findorFail($id);
+
+        return view('backend.invoices.show', compact('invoice'));
     }
 
-//Getproduct
+    function add_item(StoreitemtRequest $request ){
+
+        $formData = $request->all();
+
+        DB::beginTransaction();
+        try {
+            items_invoice::create($formData);
+
+           $product = product::findorFail($request->product_id);
+
+           if ($request->Quantity <= $product->Quantity){
+
+               $product->decrement('Quantity',$request->Quantity);
+           }else{
+               return redirect()->back()->withErrors($product->Quantity . 'المخزون المتوفر');
+           }
+
+
+             DB::commit();
+
+            session()->flash('Add','تم ضاافه المنتج ');
+            return redirect()->route("invoice.edit",$request->invoice_id);
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors(['error'=>$e->getMessage()]);
+        }
+    }
+      public  function delete_item(Request $request){
+
+          $item =items_invoice::findorFail($request->item_id);
+
+          $product = product::findorFail($item->product_id);
+
+          DB::beginTransaction();
+
+          try {
+              items_invoice::destroy($request->item_id);
+
+              $product->increment('Quantity',$item->Quantity);
+
+              DB::commit();
+              session()->flash('Deleted', 'تم الحذف بنجاح');
+
+              return redirect()->back();
+
+          } catch (\Exception $e) {
+
+              return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+
+          }
+        }
+
+    //Getproduct
     public function Getproduct($id)
     {
-        $product = product::where('categorie_id', $id)->pluck('name', 'id');
+        $product = product::where([
+            ['categorie_id', $id],
+            ['Quantity','>=', 1],
+        ])->pluck('name', 'id');
         return $product;
     }
-
 //Getprice
     public function Getprice($id)
     {
@@ -149,7 +191,7 @@ class InvoiceController extends Controller
     }
 
 //change_payment
-    public function change_payment(StoreInvoiceRequest $request)
+    public function change_payment(request $request)
     {
 
         $invoice = invoice::findorFail($request->invoice_id);
@@ -173,6 +215,17 @@ class InvoiceController extends Controller
             DB::commit();
             session()->flash('Edit', ' ام تعديل الفاتوره بنجاح  ' . $request->invoices_number);
             return redirect('invoice');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    public function destroy(Request $request)
+    {
+        try {
+            invoice::destroy($request->pro_id);
+            session()->flash('Deleted', 'تم الحذف بنجاح');
+            return redirect('invoice');
+
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

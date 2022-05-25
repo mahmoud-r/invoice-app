@@ -16,8 +16,8 @@
                         <input type="hidden" name="invoice_id"  id="invoice_id" value="">
                             <div class="col">
                                 <label>حاله الفاتوره</label>
-                                <select class="form-control form-control-lg mb-15 p-10" id="status" name="status"  @error('status') is-invalid @enderror>>
-                                    <option value=" " selected disabled>حاله الدفع </option>
+                                <select class="form-control form-control-lg mb-15 p-10"  id="status" name="status"  @error('status') is-invalid @enderror>>
+                                    <option value=" "  selected disabled>حاله الدفع </option>
                                     <option value="1">غير مدفوع </option>
                                     <option value="2"> مدفوع</option>
                                 </select>

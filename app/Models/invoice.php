@@ -12,25 +12,16 @@ class invoice extends Model
     protected $fillable = [
         'invoices_number',
         'invoices_date',
-        'categorie_id',
-        'product_id',
-        'price',
-        'disconunt',
-        'after_disconunt',
-        'text_rate',
-        'text_value',
-        'status',
+        'client_name',
+        'client_phone',
         'total',
-        'notes',
+        'status',
     ];
 
-    public function Categorie()
-    {
-        return $this->belongsTo(categorie::class, 'categorie_id');
-    }
 
-    public function product()
+
+    public function items()
     {
-        return $this->belongsTo(product::class, 'product_id');
+        return $this->hasMany(items_invoice::class);
     }
 }

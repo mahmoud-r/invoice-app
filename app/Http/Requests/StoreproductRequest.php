@@ -18,6 +18,7 @@ class StoreproductRequest extends FormRequest
         return [
             'name' => 'required|unique:Products,name,'.$this->id,
             'name_ar' => 'required|unique:Products,name,'.$this->id,
+            'Quantity' => 'required|numeric|min:0',
             'categorie_id' => 'required',
         ];
     }

@@ -34,7 +34,7 @@
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-                    @can('role-create')
+                    @can('users-create')
                         <a class="btn btn-success mb-4" href="{{ route('users.create') }}"> Create New User</a>
                     @endcan
                         <table class="table table-bordered">
@@ -59,10 +59,14 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                                        @can('edit-users')
                                         <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                                        @endcan
+                                        @can('delete-users')
                                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
