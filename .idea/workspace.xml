@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28f1b02b-d0e7-4596-88f3-848667717fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/lang/ar/backend/dashboard.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/backend/dashboard.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/additem.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/delete_item.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreInvoiceRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreInvoiceRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreproductRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreproductRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/invoiceFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/invoiceFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/productFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/productFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_05_06_144324_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_05_06_144324_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_05_10_101843_create_invoices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_05_10_101843_create_invoices_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/PermissionTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/ar/backend/main-sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ar/backend/main-sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/backend/main-sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/backend/main-sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/Categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/Categories/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/change_payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/change_payment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/test.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/products/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/products/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/backend/main-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/backend/main-header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/backend/main-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/backend/main-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +152,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/invoices" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -232,7 +196,8 @@
       <workItem from="1652448869246" duration="13573000" />
       <workItem from="1652699101967" duration="55047000" />
       <workItem from="1653328434530" duration="939000" />
-      <workItem from="1653329457057" duration="29837000" />
+      <workItem from="1653329457057" duration="33873000" />
+      <workItem from="1653570317230" duration="4648000" />
     </task>
     <servers />
   </component>
